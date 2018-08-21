@@ -1,0 +1,11 @@
+Version 1.2 - 07.06.2018
+- Two more demos added including one boxed layout
+- Demo 04 structure has changed
+- Few changes in SASS
+
+Version 1.1 - 07.04.2018
+- Added three more demo including two dark versions
+- Few changes in SASS variables
+
+Version 1.0 - 07.03.2018
+- Initial release
