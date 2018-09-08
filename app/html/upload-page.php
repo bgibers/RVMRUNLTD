@@ -37,10 +37,13 @@ include "header.php";
                                        name="taglist" placeholder="Enter the keywords, separated by commas"
                                        required="required" type="text">
                                 <input type="hidden" name="MAX_FILE_SIZE" value="50000000"/>
-                                <label for="flname" style="color:#7df442"><em> Add a Data Item: (Each file limit
-                                        50M)</em></label><br/>
-                                <input required class="text-field-8 w-input" name="flname" id="flname" type="file"/>
+                                <label for="audioname" style="color:#7df442"><em> Add audio:</em></label><br/>
+                                <input required class="text-field-8 w-input" name="audioname" id="audioname" type="file"
+                                       accept="audio/*"/>
 
+                                <label for="imagename" style="color:#7df442"><em> Add album art: </em></label><br/>
+                                <input required class="text-field-8 w-input" name="imagename" id="imagename" type="file"
+                                       accept="image/*"/>
                                 <input class="submit-button-4 w-button" data-wait="Please wait..." id="uploadBtn"
                                        type="submit" value="Upload">
                             </form>

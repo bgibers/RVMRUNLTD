@@ -6,19 +6,23 @@
  * Time: 8:32 AM
  */
 
-//session_save_path("/home/tmcvick/");
-//session_start();
+session_save_path("/home/rvmrunlt");
+session_start();
 
-$servername = "localhost:3306";
+$servername = "localhost";
 $username = "rvmrunlt_admin";
-$password = "a;lsdkfj19003b ";
+$password = "rvmrunlt_admin";
 $dbname = "rvmrunlt_mainDB";
 
-try {
-    $conn = new mysqli($servername, $username, $password, $dbname);
-} catch (PDOException $e) {
-    echo "Connection Failed\n", $e->getMessage();
+$link = mysqli_connect($servername, $username, $password, $dbname);
+if (!$link) {
+    echo "Error: Unable to connect to MySQL." . PHP_EOL;
+    echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
+    echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
+    die();
 }
+echo 'Database Connected successfully';
+mysqli_close($link);
 
 function displayRow($sql)
 {
