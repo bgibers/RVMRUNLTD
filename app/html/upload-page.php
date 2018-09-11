@@ -48,10 +48,10 @@ include "header.php";
                                 <input required class="text-field-8 w-input" name="audioname" id="audioname" type="file"
                                        accept="audio/*"/><br/>
                                 <label for="imagename" style="color:#7df442"><em> Add album art: </em></label>
-                                <input required class="text-field-8 w-input" name="imagename" id="imagename" type="file"
-                                       accept="image/*"/>
-                                <input class="submit-button-4 w-button" data-wait="Please wait..." id="uploadBtn"
-                                       type="submit" value="Upload">
+                                <!--                                <input required class="text-field-8 w-input" name="imagename" id="imagename" type="file"-->
+                                <!--                                       accept="image/*"/>-->
+                                <!--                                <input class="submit-button-4 w-button" data-wait="Please wait..." id="uploadBtn"-->
+                                <!--                                       type="submit" value="Upload">-->
                             </form>
                         </div>
                     </main>
