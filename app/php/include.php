@@ -6,7 +6,7 @@
  * Time: 8:32 AM
  */
 
-session_save_path("/home/rvmrunlt");
+session_save_path("/home/rvmrunlt/");
 session_start();
 
 $servername = "localhost";
@@ -14,15 +14,21 @@ $username = "rvmrunlt_admin";
 $password = "rvmrunlt_admin";
 $dbname = "rvmrunlt_mainDB";
 
-$link = mysqli_connect($servername, $username, $password, $dbname);
-if (!$link) {
-    echo "Error: Unable to connect to MySQL." . PHP_EOL;
-    echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
-    echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
-    die();
+//$link = mysqli_connect($servername, $username, $password, $dbname);
+//if (!$link) {
+//    echo "Error: Unable to connect to MySQL." . PHP_EOL;
+//    echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
+//    echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
+//    die();
+//}
+//echo 'Database Connected successfully';
+
+try {
+    $conn = new mysqli($servername, $username, $password, $dbname);
+} catch (PDOException $e) {
+    echo "Connection Failed\n", $e->getMessage();
+
 }
-echo 'Database Connected successfully';
-mysqli_close($link);
 
 function displayRow($sql)
 {
@@ -142,7 +148,7 @@ function dieWithError($errorNo)
             ?>
             <script type="text/javascript">
                 alert("Error while uploading file: file already exists!");
-                window.location.href = "http://rvmrunltd.us/html/upload.php";
+                window.location.href = "http://rvmrunltd.us/html/upload-page.php";
             </script>
         <?php
         case 11:
@@ -150,7 +156,7 @@ function dieWithError($errorNo)
             ?>
             <script type="text/javascript">
                 alert("Error while uploading file: file exceeds the maximum file size!");
-                window.location.href = "http://rvmrunltd.us/html/upload.php";
+                window.location.href = "http://rvmrunltd.us/html/upload-page.php";
             </script>
         <?php
         case 12:
@@ -158,7 +164,7 @@ function dieWithError($errorNo)
             ?>
             <script type="text/javascript">
                 alert("Error while uploading file!");
-                window.location.href = "http://rvmrunltd.us/html/upload.php";
+                window.location.href = "http://rvmrunltd.us/html/upload-page.php";
             </script>
         <?php
         case 13:
@@ -187,6 +193,28 @@ function dieWithError($errorNo)
             <script type="text/javascript">
                 alert("Error while creating comment. Exiting to homepage");
                 window.location.href = "http://rvmrunltd.us/html/my_channel.php";
+            </script>
+        <?php
+        case 17:
+            //error with getting artist_id
+            ?>
+            <script type="text/javascript">
+                alert("Error while trying to get Artist");
+                window.location.href = "http://rvmrunltd.us/html/upload-page.php";
+            </script>
+        <?php
+        case 18:
+            ?>
+            <script type="text/javascript">
+                alert("Error while trying to get Album");
+                window.location.href = "http://rvmrunltd.us/html/upload-page.php";
+            </script>
+        <?php
+        case 18:
+            ?>
+            <script type="text/javascript">
+                alert("Error while trying to move file");
+                window.location.href = "http://rvmrunltd.us/html/upload-page.php";
             </script>
         <?php
     }

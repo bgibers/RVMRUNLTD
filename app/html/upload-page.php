@@ -44,14 +44,14 @@ include "header.php";
                                        name="taglist" placeholder="Enter the keywords, separated by commas"
                                        required="required" type="text"><br/>
                                 <input type="hidden" name="MAX_FILE_SIZE" value="50000000"/>
-                                <label for="audioname" style="color:#7df442"><em> Add audio:</em></label>
+                                <label for="audioname" style="color:#7df442"><em> Add audio: (50 MB limit per song)</em></label>
                                 <input required class="text-field-8 w-input" name="audioname" id="audioname" type="file"
                                        accept="audio/*"/><br/>
-                                <label for="imagename" style="color:#7df442"><em> Add album art: </em></label>
+                                <!--                                <label for="imagename" style="color:#7df442"><em> Add album art: </em></label>-->
                                 <!--                                <input required class="text-field-8 w-input" name="imagename" id="imagename" type="file"-->
                                 <!--                                       accept="image/*"/>-->
-                                <!--                                <input class="submit-button-4 w-button" data-wait="Please wait..." id="uploadBtn"-->
-                                <!--                                       type="submit" value="Upload">-->
+                                <input class="submit-button-4 w-button" data-wait="Please wait..." id="uploadBtn"
+                                       type="submit" value="Upload">
                             </form>
                         </div>
                     </main>
