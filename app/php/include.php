@@ -6,8 +6,8 @@
  * Time: 8:32 AM
  */
 
-session_save_path("/home/rvmrunlt/");
-session_start();
+//session_save_path("/home/rvmrunlt/");
+//session_start();
 
 $servername = "localhost";
 $username = "rvmrunlt_admin";
@@ -210,10 +210,24 @@ function dieWithError($errorNo)
                 window.location.href = "http://rvmrunltd.us/html/upload-page.php";
             </script>
         <?php
-        case 18:
+        case 19:
             ?>
             <script type="text/javascript">
-                alert("Error while trying to move file");
+                alert("Error while trying to create Artist");
+                window.location.href = "http://rvmrunltd.us/html/upload-page.php";
+            </script>
+        <?php
+        case 19:
+            ?>
+            <script type="text/javascript">
+                alert("Error while trying to create Album");
+                window.location.href = "http://rvmrunltd.us/html/upload-page.php";
+            </script>
+        <?php
+        case 20:
+            ?>
+            <script type="text/javascript">
+                alert("Error while trying to create Tags");
                 window.location.href = "http://rvmrunltd.us/html/upload-page.php";
             </script>
         <?php

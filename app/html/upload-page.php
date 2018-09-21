@@ -1,3 +1,6 @@
+<?php
+include_once "include.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +23,15 @@ include "music-player.php";
 include "header.php";
 ?>
 <div id="site-content">
+    <!-- Modal -->
+    <?php
+    include "newArtistModal.php";
+    ?>
+
+    <?php
+    include "newAlbumModal.php";
+    ?>
+
     <div id="site-content-inner">
         <div class="pt-4 pt-lg-5"></div>
         <div class="master-container-fluid">
@@ -32,16 +44,37 @@ include "header.php";
                                 <label for="titleTxt" id="titleLbl">Title</label>
                                 <input class="text-field-8 w-input" data-name="titleTxt" id="title" maxlength="256"
                                        name="title" placeholder="Enter the title of the song" type="text" required>
-                                <label for="artistTxt" id="artistLbl">Artist</label>
-                                <input class="text-field-8 w-input" data-name="artistTxt" id="artist" maxlength="256"
-                                       name="artist" placeholder="Enter the songs Artist" type="text" required>
-                                <label for="albumTxt" id="albumLbl">Album</label>
-                                <input class="text-field-8 w-input" data-name="albumTxt" id="album" maxlength="256"
-                                       name="album" placeholder="Enter the album that the song belongs to" type="text"
-                                       required>
+                                <label for="artist" id="artistLbl">Artist</label>
+                                <?php
+                                $sql = "SELECT * FROM Artist";
+                                $result = $conn->query($sql);
+
+                                echo "<select data-name='artist' id='artist' name='artist'>";
+                                echo "    <option disabled selected value> -- select an artist -- </option>";
+                                if ($result->num_rows != 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "<option value='" . $row['artist_id'] . "'>" . $row['artist_name'] . "</option>";
+                                    }
+                                }
+                                echo "</select>";
+                                ?>
+                                <label for="album" id="albumLbl">Album</label>
+                                <?php
+                                $sql = "SELECT * FROM Album";
+                                $result = $conn->query($sql);
+
+                                echo "<select data-name='album' id='album' name='album'>";
+                                echo "    <option disabled selected value> -- select an album -- </option>";
+                                if ($result->num_rows != 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "<option value='" . $row['album_id'] . "'>" . $row['album_name'] . "</option>";
+                                    }
+                                }
+                                echo "</select>";
+                                ?>
                                 <label for="taglist" id="typeLbl">Tags</label>
                                 <input class="text-field-8 w-input" data-name="taglist" id="taglist" maxlength="1000"
-                                       name="taglist" placeholder="Enter the keywords, separated by commas"
+                                       name="taglist" placeholder="Enter keywords, separated by commas"
                                        required="required" type="text"><br/>
                                 <input type="hidden" name="MAX_FILE_SIZE" value="50000000"/>
                                 <label for="audioname" style="color:#7df442"><em> Add audio: (50 MB limit per song)</em></label>
@@ -50,6 +83,12 @@ include "header.php";
                                 <!--                                <label for="imagename" style="color:#7df442"><em> Add album art: </em></label>-->
                                 <!--                                <input required class="text-field-8 w-input" name="imagename" id="imagename" type="file"-->
                                 <!--                                       accept="image/*"/>-->
+                                <button type="button" data-toggle="modal" data-target="#artistModal"
+                                        class="submit-button-4 w-button" id="newArtistBtn">New Artist
+                                </button>
+                                <button type="button" data-toggle="modal" data-target="#albumModal"
+                                        class="submit-button-4 w-button" id="newAlbumBtn">New Album
+                                </button>
                                 <input class="submit-button-4 w-button" data-wait="Please wait..." id="uploadBtn"
                                        type="submit" value="Upload">
                             </form>
@@ -75,6 +114,7 @@ include "search.php";
 <?php
 include "footer-scripts.php";
 ?>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
 <script src="../js/webflow.js" type="text/javascript"></script>
 <!-- [if lte IE 9]>

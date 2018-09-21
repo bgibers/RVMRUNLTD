@@ -16,8 +16,8 @@ include_once "include.php";
 
 
 $title = $_REQUEST['title'];
-$artist = $_REQUEST['artist'];
-$album = $_REQUEST['album'];
+$artist_id = $_REQUEST['artist'];
+$album_id = $_REQUEST['album'];
 $taglist = $_REQUEST['taglist'];
 // $u_id = $_SESSION['glbl_user']->user_id;
 
@@ -34,7 +34,7 @@ if (file_exists($target_file)) {
 }
 
 // Check file size
-if ($_FILES["flname"]["size"] > 50000000) {
+if ($_FILES["audioname"]["size"] > 50000000) {
     dieWithError(11);
     exit();
 }
@@ -43,49 +43,6 @@ if ($_FILES["flname"]["size"] > 50000000) {
 if (move_uploaded_file($_FILES["audioname"]["tmp_name"], $target_file)) {
     chmod($target_file, 0644);
 
-    //check if artist exists if not create
-    //$artist_id = mysqli_query($conn,"SELECT artist_id FROM Artist WHERE artist_name='".$artist."'");
-    $sql = "SELECT artist_id FROM Artist WHERE artist_name= '$artist'";
-    $result = $conn->query($sql);
-
-    if ($rowcount = mysqli_num_rows($result) == 0) {
-        ?>
-        <script type="text/javascript">
-            alert("Creating new Artist");
-        </script>
-        <?php
-
-        $sql = "INSERT INTO Artist (artist_name, artist_filename) VALUES ('$artist','test')";
-        if ($conn->query($sql) === TRUE) {
-            $artist_id = mysqli_insert_id($conn);
-        } else {
-            dieWithError(17);
-        }
-    } else {
-        $artist_id = mysqli_fetch_object($result)->artist_id;
-    }                           //todo update artist art
-
-    //check if album exists if not create it
-    //$album_id = mysqli_query($conn,"SELECT album_id FROM Album WHERE album_name='".$album."'");
-    $sql = "SELECT album_id FROM Album WHERE album_name= '$album'";
-    $result = $conn->query($sql);
-
-    if ($rowcount = mysqli_num_rows($result) == 0) {
-        ?>
-        <script type="text/javascript">
-            alert("Creating new Album");
-        </script>
-        <?php
-
-        $sql = "INSERT INTO Album (album_name, album_filename, artist_id) VALUES ('$album','test','$artist_id')";
-        if ($conn->query($sql) === TRUE) {
-            $album_id = mysqli_insert_id($conn);
-        } else {
-            dieWithError(18);
-        }
-    } else {
-        $album_id = mysqli_fetch_object($result)->album_id;
-    }
 
     /* Insert data */
     $sql = "INSERT INTO Data (filename,title, user_id, artist_id, album_id) VALUES ('$filename','$title','3','$artist_id','$album_id')";
@@ -118,7 +75,7 @@ if (move_uploaded_file($_FILES["audioname"]["tmp_name"], $target_file)) {
                     $tgint = mysqli_fetch_object($result)->tag_id;
                 }
             } else {
-                dieWithError(17);
+                dieWithError(20);
 
             }
 
@@ -143,7 +100,7 @@ if (move_uploaded_file($_FILES["audioname"]["tmp_name"], $target_file)) {
 
     }
 } else {
-    dieWithError(19);
+    dieWithError(12);
 
 }
 ?>
