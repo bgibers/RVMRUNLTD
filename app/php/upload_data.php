@@ -29,8 +29,7 @@ $target_file = $dirname . $filename;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
 if (file_exists($target_file)) {
-    dieWithError(10);
-    exit();
+    unlink($target_file);
 }
 
 // Check file size
@@ -103,4 +102,3 @@ if (move_uploaded_file($_FILES["audioname"]["tmp_name"], $target_file)) {
     dieWithError(12);
 
 }
-?>

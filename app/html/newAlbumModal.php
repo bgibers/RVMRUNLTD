@@ -18,7 +18,7 @@ include_once "../php/include.php";
                            name="albumName" placeholder="Enter the songs album" type="text">
 
                     <?php
-                    $sql = "SELECT * FROM Artist";
+                    $sql = "SELECT * FROM Artist ORDER BY artist_name";
                     $result = $conn->query($sql);
 
                     echo "<select data-name='artist' id='artist' name='artist'>";

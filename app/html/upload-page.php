@@ -46,7 +46,7 @@ include "header.php";
                                        name="title" placeholder="Enter the title of the song" type="text" required>
                                 <label for="artist" id="artistLbl">Artist</label>
                                 <?php
-                                $sql = "SELECT * FROM Artist";
+                                $sql = "SELECT * FROM Artist ORDER BY artist_name";
                                 $result = $conn->query($sql);
 
                                 echo "<select data-name='artist' id='artist' name='artist'>";
@@ -60,7 +60,7 @@ include "header.php";
                                 ?>
                                 <label for="album" id="albumLbl">Album</label>
                                 <?php
-                                $sql = "SELECT * FROM Album";
+                                $sql = "SELECT * FROM Album ORDER BY album_name";
                                 $result = $conn->query($sql);
 
                                 echo "<select data-name='album' id='album' name='album'>";

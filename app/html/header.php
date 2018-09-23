@@ -1,3 +1,8 @@
+<script type="text/javascript">
+    function radioAlert() {
+        return alert("Coming Soon! Check back later.");
+    }
+</script>
 <div id="site-header">
     <div id="primary-menu-offcanvas" class="off-canvas off-canvas-left d-flex flex-column">
         <div class="m-3">
@@ -13,8 +18,14 @@
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="radio.html">Radio</a>
+                    <a class="nav-link" href="#" onclick="return radioAlert(this);">Radio</a>
                 </li>
+                <script type="text/javascript">
+                    function radioAlert() {
+                        return alert("Coming Soon! Check back later.");
+                    }
+                </script>
+
                 <li class="nav-item">
                     <a class="nav-link" href="library.html">Library</a>
                 </li>
@@ -98,7 +109,7 @@
                                     <a class="nav-link" href="index.php">Home</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a class="nav-link" href="index.php">Radio</a>
+                                    <a class="nav-link" href="#" onclick="return radioAlert(this);">Radio</a>
                                 </li>
                                 <li class="menu-item">
                                     <a class="nav-link" href="library.php">Library</a>
