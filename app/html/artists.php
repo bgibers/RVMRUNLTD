@@ -25,9 +25,9 @@ include_once "../php/include.php";
                             <img height='190' width='190' class='retina'  src='../uploads/" . $artistArt . "'  alt=''>
                         </div>
                         <div class='desc top-sm text-center'>
-                           <form class='form-4' data-name='Email Form 4' id='single-album-form-lib' name='email-form-4'
+                           <form class='form-4' data-name='Email Form 4' id='single-artist-form-lib' name='email-form-4'
                                                                   action='single-artist.php' method='post' enctype='multipart/form-data'>
-                            <input type='hidden' name='albumID' value='" . $artistId . "' />
+                            <input type='hidden' name='artistId' value='" . $artistId . "' />
      
                             <h5 class='title fs-3'><button class=\"btn btn-link\" type='submit''>" . $artistName . "</button></h5>
                             <h6 class='f-w-400'><a href='#'>FOLLOWING</a></h6>

@@ -1,11 +1,12 @@
 <?php
 include_once "../php/include.php";
 
-$albumArt = $row['album_filename'];
-$albumId = $row['album_id'];
-$albumName = $row['album_name'];
-$artistId = $row['artist_id'];
-$artistName = $row['artist_name'];
+$albumArt = $_REQUEST["albumArt"];
+$albumId = $_REQUEST["albumId"];
+$albumName = $_REQUEST["albumName"];
+$artistId = $_REQUEST["artistId"];
+$artistName = $_REQUEST["artistName"];
+
 
 ?>
 
@@ -17,7 +18,7 @@ $artistName = $row['artist_name'];
     <meta name="description" content="single-album">
     <meta name="author" content="Brendan Giberson">
 
-    <title>UNLTD | Albums</title>
+    <title>UNLTD | Album</title>
     <?php
     include "meta.php";
     ?>
@@ -79,12 +80,26 @@ echo "
                         <div class='pl-e-xl-40 col-lg-7 flex-column-lg-album-content text-center text-lg-left'>
                             <div class='album-top-box mb-4'>
                                 <h6 class='inactive-color'>ALBUM</h6>
-                                <h1 class='album-title'>The Ones That Like Me</h1>
-                                <p class='mb-2'>By: <a href='#'>Danielle Bradberry</a></p>
+                                <h1 class='album-title'>" . $albumName . "</h1>
+                             <form data-name='Email Form 4' id='single-album-form-lib' name='email-form-4'
+                                                                  action='single-artist.php' method='post' enctype='multipart/form-data'>
+                             <input type='hidden' name='albumID' value='" . $artistId . "' />
+    
+                                <p class='mb-2'>By: <button class=\"btn btn-link\" type='submit'align='left'>" . $artistName . "</button></p>
+                                </form>
                                 <div class='separator mb-4 mt-4'>
                                     <span class='separator-md'></span>
-                                </div>
-                                <p class='mb-2'>14 Songs - 30 minutes</p>
+                                </div>";
+
+$count = "SELECT count(Data.data_id) as total From Data WHERE Data.artist_id='$artistId' and Data.album_id='$albumId'";
+
+if ($result = $conn->query($count)) {
+    $count = mysqli_fetch_assoc($result);
+    $count = $count['total'];
+} else {
+    echo 'Error: ', $conn->error;
+}
+echo "<p class='mb-2'>" . $count . " songs</p>
                                 <p class='mb-2'>Released on November 12, 2017</p>
                             </div>
 <!--                            <div class='mb-4 ml-md-0 mr-md-0'>-->
@@ -124,15 +139,24 @@ echo "
                                                 xlink:href='#icon-heart-blank'></use></svg></span>
                             </div>
                         </li>
-                        <!--TODO-->
-                        <li class='item hover-bg-item'>
+                        <!--TODO-->";
+$sql = "SELECT * From Data WHERE Data.artist_id='$artistId' and Data.album_id='$albumId' ORDER BY Data.data_id";
+$result = $conn->query($sql);
+$songNum = 0;
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $songNum++;
+    $title = $row['title'];
+    $songId = $row['data_id'];
+
+    echo "<li class='item hover-bg-item'>
                             <div class='item-number'>
-                                <span class='hover-hide'>01</span>
+                                <span class='hover-hide'>" . $songNum . "</span>
                                 <span class='hover-show adonis-icon icon-1x'><svg xmlns='http://www.w3.org/2000/svg'
                                                                                   version='1.1'><use
                                                 xlink:href='#icon-brand-play'></use></svg> </span>
                             </div>
-                            <div class='item-title'>Begining To See The Light</div>
+                            <div class='item-title'>" . $title . "</div>
                             <div class='item-duration'><span class='hover-hide'>14:13</span></div>
                             <div class='item-tools'>
                                 <span class='hover-hide'>1245</span>
@@ -151,25 +175,34 @@ echo "
                             </div>
                             <div class='hover-bg gradient-adonis'></div>
                         </li>
+                        ";
+}
+echo "   
                     </ul>
                     <div class='pt-e-20 pt-e-lg-40'></div>
                     <section>
                         <div class='title-box'>
-                            <h2 class='title h3-md'>More By Danielle Bradbery</h2>
+                            <h2 class='title h3-md'>Albums By " . $artistName . "</h2>
                         </div>
 
                         <div class='adonis-carousel fluid-reverse-r fluid-reverse-md-none viewport-animate'
                              data-animation='slideRight' data-animation-item='.item' data-auto-width='yes'
                              data-loop='no' data-dots='yes' data-responsive-width='0:230px'>
                             <div class='gutter-30'>
-                                <div class='owl-carousel owl-theme-adonis'>
-                                    <div class='item'>
+                                <div class='owl-carousel owl-theme-adonis'>";
+$sql = "SELECT * From Album WHERE Album.artist_id='$artistId' ORDER BY Album.album_name";
+$result = $conn->query($sql);
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $songNum++;
+    $albumId = $row['album_id'];
+    $albumName = $row['album_name'];
+    $fileName = $row['album_filename'];
+    echo "<div class='item'>
                                         <div class='music-img-box'>
                                             <div class='img-box box-rounded-sm'>
                                                 <img class='retina'
-                                                     src='../assets/images/new-releases/new-releases-1.jpg'
-                                                     data-2x='assets/images/new-releases/new-releases-1@2x.jpg'
-                                                     alt=''>
+                                                    src='../uploads/" . $fileName . "' alt=''>
                                                 <div class='hover-state'>
                                                     <div class='absolute-bottom-left pl-e-20 pb-e-20'>
                                                         <span class='pointer play-btn-dark round-btn'><i
@@ -184,11 +217,20 @@ echo "
                                                     </div>
                                                 </div>
                                             </div>
-                                            <h6 class='title'><a href='#'>Vestibulum nibh lorem ipsum</a></h6>
-                                            <p class='sub-title category'><a href='#'>UNLTD Music Pop</a></p>
+                                            <form data-name='Email Form 4' id='single-album-form-lib' name='email-form-4'
+                                                                  action='single-album.php' method='post' enctype='multipart/form-data'>
+                                                                <input type='hidden' name='albumId' data-name='albumId' id='albumId' value='" . $albumId . "' />
+                                                               <input type='hidden' name='albumArt' data-name='albumArt' id='albumArt'value='" . $fileName . "' />
+                                                               <input type='hidden' name='albumName' data-name='albumName' id='albumName'value='" . $albumName . "' /> 
+                                                               <input type='hidden' name='artistName' data-name='artistName' id='artistName'value='" . $artistName . "' />
+                                                               <input type='hidden' name='artistId' data-name='artistId' id='artistId'value='" . $artistId . "' />
+     
+                            <h6 class='title'><button class=\"btn btn-link\" type='submit''>" . $albumName . "</button></h6>
+                            </form>
                                         </div>
-                                    </div> <!--TODO-->
-
+                                    </div> ";
+}
+echo "
                                 </div>
                             </div>
                         </div>

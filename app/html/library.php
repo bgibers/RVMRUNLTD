@@ -137,9 +137,16 @@ include "header.php";
                                                     </div>
                                                                <form class='form-4' data-name='Email Form 4' id='single-album-form-lib' name='email-form-4'
                                                                   action='../html/single-album.php' method='post' enctype='multipart/form-data'>
-                                                               <input type='hidden' name='albumID' value='" . $albumId . "' />
-     
-                                                            <h6 class='title'><button class=\"btn btn-link\" type='submit''>" . $albumName . "</button></h6>
+                                                               <input type='hidden' name='albumId' data-name='albumId' id='albumId' value='" . $albumId . "' />
+                                                               <input type='hidden' name='albumArt' data-name='albumArt' id='albumArt'value='" . $albumArt . "' />
+                                                               <input type='hidden' name='albumName' data-name='albumName' id='albumName'value='" . $albumName . "' /> 
+                                                               <input type='hidden' name='artistName' data-name='artistName' id='artistName'value='" . $artistName . "' />
+                                                               <input type='hidden' name='artistId' data-name='artistId' id='artistId'value='" . $artistId . "' />
+
+                                                                                                                                                                                                                                       <input type='hidden' name='albumName' data-name='albumName' id='albumName'value='" . $albumName . "' /> 
+
+
+                                                            <h6 class='title'><button class=\"btn btn-link\" data-wait=\"Please wait...\" type='submit''>" . $albumName . "</button></h6>
                                                             <p class='sub-title category'>" . $artistName . "</p>
                                                             </form>
                                                 </div>
