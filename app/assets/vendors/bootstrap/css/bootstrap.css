@@ -2779,14 +2779,13 @@ fieldset[disabled] a.btn {
 }
 
 .btn-link {
-  font-weight: 400;
-  color: #007bff;
+  font-weight: 900;
+  color: #7df442;
   background-color: transparent;
 }
 
 .btn-link:hover {
-  color: #0056b3;
-  text-decoration: underline;
+  color: #8e9194;
   background-color: transparent;
   border-color: transparent;
 }
