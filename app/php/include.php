@@ -6,23 +6,29 @@
  * Time: 8:32 AM
  */
 
-session_save_path("/home/rvmrunlt");
-session_start();
+//session_save_path("/home/rvmrunlt/");
+//session_start();
 
 $servername = "localhost";
 $username = "rvmrunlt_admin";
 $password = "rvmrunlt_admin";
 $dbname = "rvmrunlt_mainDB";
 
-$link = mysqli_connect($servername, $username, $password, $dbname);
-if (!$link) {
-    echo "Error: Unable to connect to MySQL." . PHP_EOL;
-    echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
-    echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
-    die();
+//$link = mysqli_connect($servername, $username, $password, $dbname);
+//if (!$link) {
+//    echo "Error: Unable to connect to MySQL." . PHP_EOL;
+//    echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
+//    echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
+//    die();
+//}
+//echo 'Database Connected successfully';
+
+try {
+    $conn = new mysqli($servername, $username, $password, $dbname);
+} catch (PDOException $e) {
+    echo "Connection Failed\n", $e->getMessage();
+
 }
-echo 'Database Connected successfully';
-mysqli_close($link);
 
 function displayRow($sql)
 {
@@ -72,21 +78,21 @@ function dieWithError($errorNo)
             ?>
             <script type="text/javascript">
                 alert("Login failed!");
-                window.location.href = "http://webapp.cs.clemson.edu/~tmcvick/html/login.php";
+                window.location.href = "http://rvmrunltd.us/html/login.php";
             </script>
         <?php
         case 2:
             ?>
             <script type="text/javascript">
                 alert("Failed to register user!");
-                window.location.href = "http://webapp.cs.clemson.edu/~tmcvick/html/registration.html";
+                window.location.href = "http://rvmrunltd.us/html/registration.html";
             </script>
         <?php
         case 3:
             ?>
             <script type="text/javascript">
                 alert("User is not logged in!");
-                window.location.href = "http://webapp.cs.clemson.edu/~tmcvick/html/login.php";
+                window.location.href = "http://rvmrunltd.us/html/login.php";
             </script>
         <?php
         case 4:
@@ -94,7 +100,7 @@ function dieWithError($errorNo)
             ?>
             <script type="text/javascript">
                 alert("Error getting data, exiting to homepage");
-                window.location.href = "http://webapp.cs.clemson.edu/~tmcvick/html/my_channel.php";
+                window.location.href = "http://rvmrunltd.us/html/my_channel.php";
             </script>
         <?php
         case 5:
@@ -102,7 +108,7 @@ function dieWithError($errorNo)
             ?>
             <script type="text/javascript">
                 alert("Error while sending message: Message not sent");
-                window.location.href = "http://webapp.cs.clemson.edu/~tmcvick/html/messages.php";
+                window.location.href = "http://rvmrunltd.us/html/messages.php";
             </script>
         <?php
         case 6:
@@ -110,7 +116,7 @@ function dieWithError($errorNo)
             ?>
             <script type="text/javascript">
                 alert("Cannot create playlist!");
-                window.location.href = "http://webapp.cs.clemson.edu/~tmcvick/html/create_playlist.php";
+                window.location.href = "http://rvmrunltd.us/html/create_playlist.php";
             </script>
         <?php
         case 7:
@@ -118,7 +124,7 @@ function dieWithError($errorNo)
             ?>
             <script type="text/javascript">
                 alert("Cannot load playlists! Exiting to homepage");
-                window.location.href = "http://webapp.cs.clemson.edu/~tmcvick/html/my_channel.php";
+                window.location.href = "http://rvmrunltd.us/html/my_channel.php";
             </script>
         <?php
         case 8:
@@ -126,7 +132,7 @@ function dieWithError($errorNo)
             ?>
             <script type="text/javascript">
                 alert("Cannot load messages! Exiting to homepage");
-                window.location.href = "http://webapp.cs.clemson.edu/~tmcvick/html/my_channel.php";
+                window.location.href = "http://rvmrunltd.us/html/my_channel.php";
             </script>
         <?php
         case 9:
@@ -134,7 +140,7 @@ function dieWithError($errorNo)
             ?>
             <script type="text/javascript">
                 alert("Error while updating user!");
-                window.location.href = "http://webapp.cs.clemson.edu/~tmcvick/html/view_profile.php";
+                window.location.href = "http://rvmrunltd.us/html/view_profile.php";
             </script>
         <?php
         case 10:
@@ -142,7 +148,7 @@ function dieWithError($errorNo)
             ?>
             <script type="text/javascript">
                 alert("Error while uploading file: file already exists!");
-                window.location.href = "http://webapp.cs.clemson.edu/~tmcvick/html/upload.php";
+                window.location.href = "http://rvmrunltd.us/html/upload-page.php";
             </script>
         <?php
         case 11:
@@ -150,7 +156,7 @@ function dieWithError($errorNo)
             ?>
             <script type="text/javascript">
                 alert("Error while uploading file: file exceeds the maximum file size!");
-                window.location.href = "http://webapp.cs.clemson.edu/~tmcvick/html/upload.php";
+                window.location.href = "http://rvmrunltd.us/html/upload-page.php";
             </script>
         <?php
         case 12:
@@ -158,35 +164,71 @@ function dieWithError($errorNo)
             ?>
             <script type="text/javascript">
                 alert("Error while uploading file!");
-                window.location.href = "http://webapp.cs.clemson.edu/~tmcvick/html/upload.php";
+                window.location.href = "http://rvmrunltd.us/html/upload-page.php";
             </script>
         <?php
         case 13:
             ?>
             <script type="text/javascript">
                 alert("Error while sending message: User does not exist");
-                window.location.href = "http://webapp.cs.clemson.edu/~tmcvick/html/messages.php";
+                window.location.href = "http://rvmrunltd.us/html/messages.php";
             </script>
         <?php
         case 14:
             ?>
             <script type="text/javascript">
                 alert("Error while adding file to favorites");
-                window.location.href = "http://webapp.cs.clemson.edu/~tmcvick/html/browse_favorites.php";
+                window.location.href = "http://rvmrunltd.us/html/browse_favorites.php";
             </script>
         <?php
         case 15:
             ?>
             <script type="text/javascript">
                 alert("Error while adding file to playlist");
-                window.location.href = "http://webapp.cs.clemson.edu/~tmcvick/html/list_playlists.php";
+                window.location.href = "http://rvmrunltd.us/html/list_playlists.php";
             </script>
         <?php
         case 16:
             ?>
             <script type="text/javascript">
                 alert("Error while creating comment. Exiting to homepage");
-                window.location.href = "http://webapp.cs.clemson.edu/~tmcvick/html/my_channel.php";
+                window.location.href = "http://rvmrunltd.us/html/my_channel.php";
+            </script>
+        <?php
+        case 17:
+            //error with getting artist_id
+            ?>
+            <script type="text/javascript">
+                alert("Error while trying to get Artist");
+                window.location.href = "http://rvmrunltd.us/html/upload-page.php";
+            </script>
+        <?php
+        case 18:
+            ?>
+            <script type="text/javascript">
+                alert("Error while trying to get Album");
+                window.location.href = "http://rvmrunltd.us/html/upload-page.php";
+            </script>
+        <?php
+        case 19:
+            ?>
+            <script type="text/javascript">
+                alert("Error while trying to create Artist");
+                window.location.href = "http://rvmrunltd.us/html/upload-page.php";
+            </script>
+        <?php
+        case 19:
+            ?>
+            <script type="text/javascript">
+                alert("Error while trying to create Album");
+                window.location.href = "http://rvmrunltd.us/html/upload-page.php";
+            </script>
+        <?php
+        case 20:
+            ?>
+            <script type="text/javascript">
+                alert("Error while trying to create Tags");
+                window.location.href = "http://rvmrunltd.us/html/upload-page.php";
             </script>
         <?php
     }
