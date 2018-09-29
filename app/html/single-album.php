@@ -83,7 +83,7 @@ echo "
                                 <h1 class='album-title'>" . $albumName . "</h1>
                              <form data-name='Email Form 4' id='single-album-form-lib' name='email-form-4'
                                                                   action='single-artist.php' method='post' enctype='multipart/form-data'>
-                             <input type='hidden' name='albumID' value='" . $artistId . "' />
+                             <input type='hidden' name='artistId' value='" . $artistId . "' />
     
                                 <p class='mb-2'>By: <button class=\"btn btn-link\" type='submit'align='left'>" . $artistName . "</button></p>
                                 </form>
