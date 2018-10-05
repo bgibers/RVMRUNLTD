@@ -98,7 +98,7 @@
                             <span class="adonis-icon mr-md-2 mr-1 icon-5x">
                                 <img src="../assets/images/new-images/unltd-logo-small.png">
                             </span>
-                            <strong class="p-1 fs-6 fs-md-8">UNLTD</strong> </a>
+                            <!--                            <strong class="p-1 fs-6 fs-md-8">UNLTD</strong>--> </a>
                     </div>
                 </div>
                 <div class="col-auto col-xl-6 align-items-center justify-content-center d-none d-md-flex">
@@ -132,7 +132,20 @@
                                             <li class="menu-item"><a href="#">Help &amp; Support</a></li>
                                             <li class="menu-item"><a href="#">Contact</a></li>
                                             <li class="menu-item"><a href="#">Terms and Privacy</a></li>
-                                            <li class="menu-item"><a href="#">Advertise</a></li>
+                                            <li class="menu-item">
+                                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post"
+                                                      target="_top">
+                                                    <input type="hidden" name="cmd" value="_s-xclick">
+                                                    <input type="hidden" name="hosted_button_id" value="2XZ9XEJUCXGK4">
+                                                    <input type="image"
+                                                           src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"
+                                                           border="0" name="submit"
+                                                           alt="PayPal - The safer, easier way to pay online!">
+                                                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif
+https://www.paypalobjects.com/en_US/i/scr/pixel.gif
+" width="1" height="1">
+                                                </form>
+                                            </li>
                                         </ul>
                                     </div>
                                 </li>

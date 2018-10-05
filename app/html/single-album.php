@@ -115,7 +115,7 @@ echo "<p class='mb-2'>" . $count . " songs</p>
 <!--                                </button>-->
 <!--                            </div>-->
                         </div>
-                        <div class='col-xl-12 col-xxl-3 text-center text-lg-left'>
+<!--                        <div class='col-xl-12 col-xxl-3 text-center text-lg-left'>
                             <div class='about'>
                                 <h4>About this album</h4>
                                 <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
@@ -124,9 +124,9 @@ echo "<p class='mb-2'>" . $count . " songs</p>
                                     commodo tristique. Duis lacus urna, condimentum a vehicula a, hendrerit ac nisi
                                     Lorem ipsum dolor sit amet
                                     Vestibulum imperdiet nibh vel magna lacinia ultrices. Sed id interdum urna. Nam ac
-                                    elit a ante commodo tristique. </p>  <!--TODO-->
+                                    elit a ante commodo tristique. </p>  &lt;!&ndash;TODO&ndash;&gt;
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <ul class='adonis-album-list pb-5 pt-e-30'>
                         <li>

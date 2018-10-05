@@ -56,16 +56,16 @@ echo "
                                     <div class='row'>
                                         <div class='col-md-5'>
                                             <div class='music-image-box'>
-                                                <div class='img-box mb-3'><img class='retina box-rounded-md'
+                                               <div class='img-box mb-3'><img class='retina box-rounded-md'
                                                                                src='../uploads/" . $artistArt . "'
                                                                                alt=''></div>
                                             </div>
                                         </div>
-                                        <div class='col-md-7 pt-3 pt-md-0'>
+                                 <!--       <div class='col-md-7 pt-3 pt-md-0'>
                                             <h3 class='mb-4'>About</h3>
                                             <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse faucibus sed dolor eget posuere.Sed id interdum urna. Nam ac elit a ante commodo tristique. Duis lacus urna, condimentum a vehicula a, hendrerit ac nisi Lorem ipsum dolor sit amet
                                                 Vestibulum imperdiet nibh vel magna lacinia ultrices. Sed id interdum urna. Nam ac elit a ante commodo tristique. </p>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                                 <div class='col-xl-5 text-center text-md-right mt-auto'>
@@ -88,7 +88,6 @@ echo "
                                     <div class='adonis-carousel viewport-animate' data-animation='slideRight' data-animation-item='.item' data-auto-width='yes' data-loop='no' data-dots='yes' data-responsive-width='0:100%|600:50%|900:33.33%|1200:20%'>
                                         <div class='gutter-30'>
                                             <div class='owl-carousel owl-theme-adonis'>";
-echo " <div class='item'>";
 
 $sql = "SELECT * FROM Data WHERE Data.artist_id = '$artistId' ORDER BY Data.title";
 $result = $conn->query($sql);
@@ -104,6 +103,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 
     if ($counter === 5) {
         $counter = 0;
+        echo " <div class='item'>";
+
     }
     echo " <div class='img-box-horizontal music-img-box h-g-bg h-d-shadow'>
                                                         <div class='img-box img-box-sm box-rounded-sm'>
@@ -120,11 +121,11 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                             </div>
                                                         </div>
                                                     </div>";
-    if ($counter === 0) {
-    }
     $counter++;
+    if ($counter === 5) {
+        echo "</div>";
+    }
 }
-echo "</div>";
 
 echo "                                        </div>
                                         </div>
