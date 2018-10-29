@@ -3,9 +3,58 @@ var adonisPlayer = {},
     adonisPlayerID = 'adonis_jplayer_main',
     adonisPlayerContainer = 'adonis_jp_container',
     adonisPlaylist,
-    currentPlaylistId;
+    currentPlaylistId,
+    jsonArray = [];
+
+//var item = adonisAllPlaylists[0].find(item => item.songId === "36");
+//adonisPlaylist.play(36)
+//function myFunction() {
+//     document.getElementById("demo").addEventListener("click", adonisPlaylist.play(46));
+// }
+//document.getElementById("demo").onclick = function() {myFunction()};
+
+// $.holdReady( true );
+
+function playSelected(clickedId) {
+    var item = adonisAllPlaylists[0].find(function (item) {
+        return item.songId === clickedId.toString();
+    });
+
+    adonisPlaylist.play(item.myIndex);
+}
+
+$.getJSON("../php/data.json", function (data) {
+    for (var i = 0; i < data.posts.length; i++) {
+        jsonArray[i] = [
+            {
+                json_title: data.posts[i].title,
+                json_artist: data.posts[i].artist_name,
+                json_mp3: "../uploads/" + data.posts[i].filename,
+                json_poster: "../uploads/" + data.posts[i].album_filename,
+                json_songId: data.posts[i].data_id,
+                json_index: i,
+            }
+        ]
+    }
+
+    adonisAllPlaylists[0] = jsonArray.map(function (cur) {
+        return {
+            title: cur[0].json_title,
+            artist: cur[0].json_artist,
+            mp3: cur[0].json_mp3,
+            poster: cur[0].json_poster,
+            songId: cur[0].json_songId,
+            myIndex: cur[0].json_index,
+        };
+    });
+
+    $.holdReady(false);
+});
+
+
 
 jQuery(document).ready(function($){
+
     "use strict";
 
     adonisPlayer.init = function(){
@@ -311,65 +360,66 @@ jQuery(document).ready(function($){
     }
 
 
-    adonisAllPlaylists[0] = [
-        {
-            title:"Dat Step",
-            artist:"Gunnar Olsen{#link1}",
-            mp3:"../assets/mp3/audiojungle1.mp3",
-            poster: "../assets/images/playlists/playlist-3.jpg",
-        },
-        {
-            title:"Detour",
-            artist:"Gunnar Olsen{#link2}",
-            mp3:"../assets/mp3/Detour.mp3",
-            poster: "../assets/images/browse/browse-overview-4.jpg",
-        },
-        {
-            title:"Do It Right",
-            artist:"Jingle Punks{#link2}",
-            mp3:"../assets/mp3/Do_It_Right.mp3",
-            poster: "../assets/images/browse/browse-overview-4.jpg"
-        },
-        {
-            title:"You're A Mean One, Mr. Grinch",
-            artist:"The Stark Palace{#link1}",
-            mp3:"../assets/mp3/Detour.mp3",
-            poster: "../assets/images/playlists/playlist-3.jpg"
-        },
-    ];
-
-    adonisAllPlaylists[1] = [
-        {
-            title:"Cro Magnon Man",
-            artist:"The Stark Palace 2{#link2}",
-            mp3:"../assets/mp3/audiojungle1.mp3",
-            poster: "../assets/images/browse/browse-overview-4.jpg"
-        },
-        {
-            title:"Cro Magnon Man 3",
-            artist:"The Stark Palace 3{#link2}",
-            mp3:"../assets/mp3/Do_It_Right.mp3",
-            poster: "../assets/images/browse/browse-overview-4.jpg"
-        },
-        {
-            title:"You're A Mean One, Mr. Grinch",
-            artist:"The Stark Palace{#link1}",
-            mp3:"../assets/mp3/Detour.mp3",
-            poster: "../assets/images/playlists/playlist-3.jpg"
-        },
-        {
-            title:"Cro Magnon Man",
-            artist:"The Stark Palace 2{#link2}",
-            mp3:"../assets/mp3/Do_It_Right.mp3",
-            poster: "../assets/images/browse/browse-overview-4.jpg"
-        },
-        {
-            title:"Cro Magnon Man 3",
-            artist:"The Stark Palace 3{#link2}",
-            mp3:"../assets/mp3/Detour.mp3",
-            poster: "../assets/images/browse/browse-overview-4.jpg"
-        },
-    ];
+    // adonisAllPlaylists[0] = [
+    //
+    //     {
+    //         title: jsonArray[0][0].json_title,
+    //         artist:jsonArray[0][0].json_artist,
+    //         mp3:jsonArray[0][0].json_mp3,
+    //         poster: jsonArray[0][0].json_poster,
+    //     },
+    //     {
+    //         title:"Detour",
+    //         artist:"Gunnar Olsen{#link2}",
+    //         mp3:"../assets/mp3/Detour.mp3",
+    //         poster: "../assets/images/browse/browse-overview-4.jpg",
+    //     },
+    //     {
+    //         title:"Do It Right",
+    //         artist:"Jingle Punks{#link2}",
+    //         mp3:"../assets/mp3/Do_It_Right.mp3",
+    //         poster: "../assets/images/browse/browse-overview-4.jpg"
+    //     },
+    //     {
+    //         title:"You're A Mean One, Mr. Grinch",
+    //         artist:"The Stark Palace{#link1}",
+    //         mp3:"../assets/mp3/Detour.mp3",
+    //         poster: "../assets/images/playlists/playlist-3.jpg"
+    //     },
+    // ];
+    //
+    // adonisAllPlaylists[1] = [
+    //     {
+    //         title:"Cro Magnon Man",
+    //         artist:"The Stark Palace 2{#link2}",
+    //         mp3:"../assets/mp3/audiojungle1.mp3",
+    //         poster: "../assets/images/browse/browse-overview-4.jpg"
+    //     },
+    //     {
+    //         title:"Cro Magnon Man 3",
+    //         artist:"The Stark Palace 3{#link2}",
+    //         mp3:"../assets/mp3/Do_It_Right.mp3",
+    //         poster: "../assets/images/browse/browse-overview-4.jpg"
+    //     },
+    //     {
+    //         title:"You're A Mean One, Mr. Grinch",
+    //         artist:"The Stark Palace{#link1}",
+    //         mp3:"../assets/mp3/Detour.mp3",
+    //         poster: "../assets/images/playlists/playlist-3.jpg"
+    //     },
+    //     {
+    //         title:"Cro Magnon Man",
+    //         artist:"The Stark Palace 2{#link2}",
+    //         mp3:"../assets/mp3/Do_It_Right.mp3",
+    //         poster: "../assets/images/browse/browse-overview-4.jpg"
+    //     },
+    //     {
+    //         title:"Cro Magnon Man 3",
+    //         artist:"The Stark Palace 3{#link2}",
+    //         mp3:"../assets/mp3/Detour.mp3",
+    //         poster: "../assets/images/browse/browse-overview-4.jpg"
+    //     },
+    // ];
 
 
     $(window).imagesLoaded(function(){

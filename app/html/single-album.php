@@ -50,7 +50,7 @@ echo "
                                         <img class='retina box-rounded-md'
                                              src='../uploads/" . $albumArt . "' alt=''>
                                     </div>
-                                    <div class='absolute-info'>
+<!--                                    <div class='absolute-info'>
                                         <a class='btn btn-60-60 btn-primary absolute-center adonis-album-button round-btn text-light'
                                            data-album-id='1' role='button' tabindex='0'>
                                             <span class='adonis-icon icon-play icon-2x'><svg
@@ -63,7 +63,7 @@ echo "
                                                             d='M19.2 0h8c0.884 0 1.6 0.716 1.6 1.6v28.8c0 0.884-0.716 1.6-1.6 1.6h-8c-0.884 0-1.6-0.716-1.6-1.6v-28.8c0-0.884 0.716-1.6 1.6-1.6z'></path><path
                                                             d='M1.6 0h8c0.884 0 1.6 0.716 1.6 1.6v28.8c0 0.884-0.716 1.6-1.6 1.6h-8c-0.884 0-1.6-0.716-1.6-1.6v-28.8c0-0.884 0.716-1.6 1.6-1.6z'></path></svg></span>
                                         </a>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                             <div class='pb-4 d-inline-block album-likes'>
@@ -100,7 +100,6 @@ if ($result = $conn->query($count)) {
     echo 'Error: ', $conn->error;
 }
 echo "<p class='mb-2'>" . $count . " songs</p>
-                                <p class='mb-2'>Released on November 12, 2017</p>
                             </div>
 <!--                            <div class='mb-4 ml-md-0 mr-md-0'>-->
 <!--                                <button class='btn btn-outline active-border rounded-btn btn-lg mr-2 mr-md-3'>SAVE TO MY-->
@@ -132,7 +131,6 @@ echo "<p class='mb-2'>" . $count . " songs</p>
                         <li>
                             <div class='item-number h6 inactive-color'>#</div>
                             <div class='item-title h6 inactive-color'>Song</div>
-                            <div class='item-duration h6 inactive-color'>Time</div>  <!--TODO-->
                             <div class='item-tools'>
                                 <span class='adonis-icon h6 inactive-color icon-1x'><svg
                                             xmlns='http://www.w3.org/2000/svg' version='1.1'><use
@@ -142,14 +140,15 @@ echo "<p class='mb-2'>" . $count . " songs</p>
                         <!--TODO-->";
 $sql = "SELECT * From Data WHERE Data.artist_id='$artistId' and Data.album_id='$albumId' ORDER BY Data.data_id";
 $result = $conn->query($sql);
-$songNum = 0;
+$songNum = 0;                                                                                                        
 
 while ($row = mysqli_fetch_assoc($result)) {
     $songNum++;
     $title = $row['title'];
-    $songId = $row['data_id'];
+    $dataId = $row["data_id"];
+    $dataId = (string)$dataId;
 
-    echo "<li class='item hover-bg-item'>
+    echo "<li class='item hover-bg-item' onclick=playSelected('$dataId')>
                             <div class='item-number'>
                                 <span class='hover-hide'>" . $songNum . "</span>
                                 <span class='hover-show adonis-icon icon-1x'><svg xmlns='http://www.w3.org/2000/svg'
@@ -157,7 +156,6 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                 xlink:href='#icon-brand-play'></use></svg> </span>
                             </div>
                             <div class='item-title'>" . $title . "</div>
-                            <div class='item-duration'><span class='hover-hide'>14:13</span></div>
                             <div class='item-tools'>
                                 <span class='hover-hide'>1245</span>
                                 <div class='hover-show d-flex flex-nowrap hover-tools'>

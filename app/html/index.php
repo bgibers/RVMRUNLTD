@@ -1,7 +1,12 @@
 <?php
 include_once "../php/include.php";
-?>
 
+if (!isset($_COOKIE['subscribed']) || empty($_COOKIE['subscribed'])) {
+    echo '<script>
+                window.location.href="subscribe.php";
+                </script>';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,12 +97,12 @@ include "header.php";
                                                 <img class='retina' src='../uploads/" . $artistFile . "' alt=''>
                                                 <div class='hover-state show'>
                                                     <div class='absolute-top d-flex justify-content-between pt-e-percent-5 pl-e-percent-8 pr-e-percent-8'>
-                                                        <span class='pointer dropdown-menu-toggle'
+                                                      <!--  <span class='pointer dropdown-menu-toggle'
                                                               data-direction='right'><span
                                                                     class='adonis-icon icon-4x color-active hover-show'><svg
                                                                         xmlns='http://www.w3.org/2000/svg'
                                                                         version='1.1'><use
-                                                                            xlink:href='#icon-horizontal-dots'></use></svg></span></span>
+                                                                            xlink:href='#icon-horizontal-dots'></use></svg></span></span>-->
                                                         <span class='title color-dark h4 fs-1'>NEW ARTIST</span>
                                                     </div>
                                                     <div class='absolute-center hover-show'>
@@ -120,12 +125,12 @@ include "header.php";
                                                      alt="">
                                                 <div class="hover-state show">
                                                     <div class="absolute-top d-flex justify-content-between pt-e-percent-5 pl-e-percent-8 pr-e-percent-8">
-                                                        <span class="pointer dropdown-menu-toggle"
-                                                              data-direction="right"><span
-                                                                    class="adonis-icon icon-4x color-active hover-show"><svg
-                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                        version="1.1"><use
-                                                                            xlink:href="#icon-horizontal-dots"></use></svg></span></span>
+                                                        <!--      <span class="pointer dropdown-menu-toggle"
+                                                                    data-direction="right"><span
+                                                                          class="adonis-icon icon-4x color-active hover-show"><svg
+                                                                              xmlns="http://www.w3.org/2000/svg"
+                                                                              version="1.1"><use
+                                                                                  xlink:href="#icon-horizontal-dots"></use></svg></span></span>-->
                                                         <span class="title color-dark h4 fs-1">COMING SOON</span>
                                                     </div>
                                                     <div class="absolute-center hover-show">
@@ -157,12 +162,12 @@ include "header.php";
                                                              alt=''>
                                                         <div class='hover-state show'>
                                                             <div class='absolute-top d-flex justify-content-between pl-e-percent-10 pr-e-percent-10 pt-e-percent-10'>
-                                                                <span class='pointer dropdown-menu-toggle'
+                                                              <!--  <span class='pointer dropdown-menu-toggle'
                                                                       data-direction='right'><span
                                                                             class='adonis-icon icon-4x color-active hover-show'><svg
                                                                                 xmlns='http://www.w3.org/2000/svg'
                                                                                 version='1.1'><use
-                                                                                    xlink:href='#icon-horizontal-dots'></use></svg></span></span>
+                                                                                    xlink:href='#icon-horizontal-dots'></use></svg></span></span>-->
                                                                 <span class='title color-dark h4 fs-1'>NEW ALBUM</span>
                                                             </div>
                                                             <div class='absolute-center hover-show'>
@@ -177,33 +182,6 @@ include "header.php";
                                                     </div>
                                                 </div>"
                                                         ?>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="music-img-box mb-e-30 mb-e-xl-40">
-                                                    <div class="img-box box-rounded-lg img-box-lg">
-                                                        <img class="retina"
-                                                             src="../assets/images/browse/browse-overview-6.jpg"
-                                                             alt="">
-                                                        <div class="hover-state show">
-                                                            <div class="absolute-top d-flex justify-content-between pl-e-percent-10 pr-e-percent-10 pt-e-percent-10">
-                                                                <span class="pointer dropdown-menu-toggle"
-                                                                      data-direction="right"><span
-                                                                            class="adonis-icon icon-4x color-active hover-show"><svg
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                version="1.1"><use
-                                                                                    xlink:href="#icon-horizontal-dots"></use></svg></span></span>
-                                                                <span class="title color-dark h4 fs-1">NEW USER</span>
-                                                            </div>
-                                                            <!--                                                            <div class="absolute-center hover-show">-->
-                                                            <!--                                                                <span class="pointer play-btn-dark round-btn"><i-->
-                                                            <!--                                                                            class="play-icon"></i></span>-->
-                                                            <!--                                                            </div>-->
-                                                            <div class="absolute-bottom pl-e-percent-10 pb-e-percent-8">
-                                                                <h4 class="title active-color">DAME</h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -248,6 +226,8 @@ include "header.php";
                                                         $title = $row["title"];
                                                         $albumId = $row["album_id"];
                                                         $artistName = $row["artist_name"];
+                                                        $dataId = $row["data_id"];
+                                                        $dataId = (string)$dataId;
 
                                                         $innerSql = "Select Album.album_filename FROM Album WHERE Album.album_id ='$albumId'";
                                                         $innerResult = $conn->query($innerSql);
@@ -269,10 +249,12 @@ include "header.php";
                                                         </div>
 
                                                         <div class='hover-state d-flex justify-content-between align-items-center'>
-                                                            <span class='pointer play-btn-dark box-rounded-sm'><i class='play-icon'></i></span>
-                                                            <div class='d-flex align-items-center'>
+                                                            <span class='pointer play-btn-dark box-rounded-sm' onclick=playSelected('$dataId')><i class='play-icon'></i></span>
+                                                            <div class='d-flex align-items-center'>                                                            
                                                                 <span class='adonis-icon text-light pointer mr-2 icon-2x'><svg xmlns='http://www.w3.org/2000/svg' version='1.1'><use xlink:href='#icon-heart-blank' /></svg></span>
+<!--
                                                                 <span class='pointer dropdown-menu-toggle'><span class='icon-dot-nav-horizontal text-light'></span></span>
+-->
                                                             </div>
                                                         </div>
                                                     </div>";
@@ -334,11 +316,6 @@ include "header.php";
                                                                                     class='play-icon'></i></span>
                                                                     </div>
                                                                     <div class='absolute-top-right pr-e-20 pt-e-20'>
-                                                                        <span class='pointer dropdown-menu-toggle'><span
-                                                                                    class='adonis-icon icon-4x'><svg
-                                                                                        xmlns='http://www.w3.org/2000/svg'
-                                                                                        version='1.1'><use
-                                                                                            xlink:href='#icon-horizontal-dots'></use></svg></span></span>
                                                                     </div>
                                                                 </div>
                                                             </div>

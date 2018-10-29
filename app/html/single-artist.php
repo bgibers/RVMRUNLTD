@@ -69,8 +69,18 @@ echo "
                                     </div>
                                 </div>
                                 <div class='col-xl-5 text-center text-md-right mt-auto'>
-                                    <button class='btn btn-outline active-border rounded-btn btn-lg-wide mr-2 mr-md-4'>FOLLOW</button>
-                                    <button class='btn btn-45-45 btn-primary p-0 rounded-circle text-center dropdown-menu-toggle'><span class='pointer text-light'><span class='adonis-icon icon-4x'><svg xmlns='http://www.w3.org/2000/svg' version='1.1'><use xlink:href='#icon-horizontal-dots'></use></svg></span></span></button>
+<form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\"
+                                                      target=\"_top\">
+                                                    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">
+                                                    <input type=\"hidden\" name=\"hosted_button_id\" value=\"2XZ9XEJUCXGK4\">
+                                                    <input type=\"image\"
+                                                           src=\"https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif\"
+                                                           border=\"0\" name=\"submit\"
+                                                           alt=\"PayPal - The safer, easier way to pay online!\">
+                                                    <img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif
+https://www.paypalobjects.com/en_US/i/scr/pixel.gif
+\" width=\"1\" height=\"1\">
+                                                </form>                             
                                 </div>
                             </div>";
 echo "
@@ -95,6 +105,8 @@ $counter = 5;
 while ($row = mysqli_fetch_assoc($result)) {
     $title = $row["title"];
     $albumId = $row["album_id"];
+    $dataId = $row["data_id"];
+    $dataId = (string)$dataId;
 
     $innerSql = "Select Album.album_filename FROM Album WHERE Album.album_id ='$albumId'";
     $innerResult = $conn->query($innerSql);
@@ -114,7 +126,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                             <h6 class='title'><a href='#'>" . $title . "</a></h6>
                                                         </div>
                                                         <div class='hover-state d-flex justify-content-between align-items-center'>
-                                                            <span class='pointer play-btn-dark box-rounded-sm'><i class='play-icon'></i></span>
+                                                            <span class='pointer play-btn-dark box-rounded-sm' onclick=playSelected('$dataId')><i class='play-icon'></i></span>
                                                             <div class='d-flex align-items-center'>
                                                                 <span class='adonis-icon text-light pointer mr-2 icon-2x'><svg xmlns='http://www.w3.org/2000/svg' version='1.1'><use xlink:href='#icon-heart-blank' /></svg></span>
                                                                 <span class='pointer dropdown-menu-toggle'><span class='icon-dot-nav-horizontal text-light'></span></span>
