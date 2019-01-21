@@ -65,17 +65,7 @@ echo "
                                         </a>
                                     </div>-->
                                 </div>
-                            </div>
-                            <div class='pb-4 d-inline-block album-likes'>
-                                <span class='adonis-icon pr-2 icon-2x'><svg xmlns='http://www.w3.org/2000/svg'
-                                                                            version='1.1'><use
-                                                xlink:href='#icon-heart-blank'></use></svg></span>
-                                <span class='pr-2'>1256</span>
-                                <span class='adonis-icon pr-2 icon-1x'><svg xmlns='http://www.w3.org/2000/svg'
-                                                                            version='1.1'><use
-                                                xlink:href='#icon-brand-play'></use></svg></span>
-                                <span>125K</span>
-                            </div>
+                            </div>               
                         </div>
                         <div class='pl-e-xl-40 col-lg-7 flex-column-lg-album-content text-center text-lg-left'>
                             <div class='album-top-box mb-4'>
@@ -87,6 +77,12 @@ echo "
     
                                 <p class='mb-2'>By: <button class=\"btn btn-link\" type='submit'align='left'>" . $artistName . "</button></p>
                                 </form>
+                                <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\">
+                                                    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\">
+                                                    <input type=\"hidden\" name=\"hosted_button_id\" value=\"2XZ9XEJUCXGK4\">
+                                                    <input type=\"image\" src=\"https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\">
+                                                    <img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif&#10;https://www.paypalobjects.com/en_US/i/scr/pixel.gif&#10;\" width=\"1\" height=\"1\">
+                                                </form>
                                 <div class='separator mb-4 mt-4'>
                                     <span class='separator-md'></span>
                                 </div>";
@@ -131,11 +127,6 @@ echo "<p class='mb-2'>" . $count . " songs</p>
                         <li>
                             <div class='item-number h6 inactive-color'>#</div>
                             <div class='item-title h6 inactive-color'>Song</div>
-                            <div class='item-tools'>
-                                <span class='adonis-icon h6 inactive-color icon-1x'><svg
-                                            xmlns='http://www.w3.org/2000/svg' version='1.1'><use
-                                                xlink:href='#icon-heart-blank'></use></svg></span>
-                            </div>
                         </li>
                         <!--TODO-->";
 $sql = "SELECT * From Data WHERE Data.artist_id='$artistId' and Data.album_id='$albumId' ORDER BY Data.data_id";
@@ -156,21 +147,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                                 xlink:href='#icon-brand-play'></use></svg> </span>
                             </div>
                             <div class='item-title'>" . $title . "</div>
-                            <div class='item-tools'>
-                                <span class='hover-hide'>1245</span>
-                                <div class='hover-show d-flex flex-nowrap hover-tools'>
-                                    <span class='adonis-icon icon-1x'><svg xmlns='http://www.w3.org/2000/svg'
-                                                                           version='1.1'><use
-                                                    xlink:href='#icon-heart-blank'></use></svg></span>
-                                    <span class='ml-3 adonis-icon icon-3x'><svg xmlns='http://www.w3.org/2000/svg'
-                                                                                version='1.1'><use
-                                                    xlink:href='#icon-plus'></use></svg> </span>
-                                    <span class='ml-3 adonis-icon pointer dropdown-menu-toggle'> <span
-                                                class='adonis-icon icon-4x'><svg xmlns='http://www.w3.org/2000/svg'
-                                                                                 version='1.1'><use
-                                                        xlink:href='#icon-horizontal-dots'></use></svg></span></span>
-                                </div>
-                            </div>
+
                             <div class='hover-bg gradient-adonis'></div>
                         </li>
                         ";

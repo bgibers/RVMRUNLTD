@@ -37,7 +37,7 @@
                         <li><a href="#" class="go-back" data-level="1">Back</a></li>
                         <li><a href="about.php">About us</a></li>
                         <li><a href="#">Help &amp; Support</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="contactus.php">Contact</a></li>
                         <li><a href="terms.php">Terms and Privacy</a></li>
                         <li><a href="#">Artist Originals</a></li>
                         <li><a href="#">News</a></li>
@@ -129,7 +129,7 @@
                                                         d="M1834.153 925.301l-820.434-892.402c-23.746-19.978-54.664-32.116-88.418-32.116s-64.672 12.138-88.628 32.288l0.21-0.172c-47.293 47.293-773.141 836.884-822.49 894.458s4.112 100.755 86.361 100.755h1644.98c76.080 0 133.655-53.462 88.418-102.811z"/></svg></span>
                                         <ul class="list-unstyled">
                                             <li class="menu-item"><a href="about.php">About us</a></li>
-                                            <li class="menu-item"><a href="#">Contact</a></li>
+                                            <li class="menu-item"><a href="contactus.php">Contact</a></li>
                                             <li class="menu-item"><a href="terms.php">Terms and Privacy</a></li>
                                             <li class="menu-item">
                                                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post"

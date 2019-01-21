@@ -14,6 +14,11 @@ if (!isset($_COOKIE['subscribed']) || empty($_COOKIE['subscribed'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Home page">
     <meta name="author" content="Brendan Giberson">
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@werunltd" />
+    <meta name="twitter:title" content="Streaming Done Right" />
+    <meta name="twitter:description" content="Stream and endorse the dopest upcoming music artist with .UNLTD! The only platform where artists are in full control" />
+    <meta name="https://cdn-images-1.medium.com/max/800/1*giX9qT2H2S-g7TC6AVpGOA@2x.jpeg" />
 
     <title>UNLTD | Home</title>
     <?php
@@ -154,7 +159,7 @@ include "header.php";
                                                             $albumId = $row["album_id"];
                                                             $albumFile = $row["album_filename"];
                                                             $albumName = $row["album_name"];
-                                                            $artistId = $row["artist_name"];
+                                                            $artistName = $row["artist_name"];
                                                         }
                                                         echo "
                                                         <img class='retina'

@@ -69,7 +69,7 @@
 
             </div>
             <h4 style="text-align: center;color: #7df442">
-                Subscribe to hear more about the revolution
+                Subscribe to unlock music catalog
             </h4>
             <div class="form-wrapper-2 w-form">
                 <form class="form-subscribe" data-name="Email Form 3" id="email-form-3" name="email-form-3"
